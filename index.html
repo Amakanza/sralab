@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test of Infant Motor Performance | RehabMeasures Database</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            color: #333;
+        }
+
+        .logo-highlight {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-button {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #e74c3c;
+            background: white;
+            color: #e74c3c;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-button:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .main-nav {
+            background: #f8f9fa;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .main-nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+        }
+
+        .nav-menu a {
+            color: #666;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #e74c3c;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23f0f0f0" width="1200" height="400"/><circle fill="%23ddd" cx="200" cy="200" r="50"/><circle fill="%23ccc" cx="400" cy="150" r="30"/><circle fill="%23bbb" cx="600" cy="250" r="40"/><text x="600" y="200" font-family="Arial" font-size="24" fill="%23999" text-anchor="middle">Medical Research Image</text></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+
+        .breadcrumb-overlay {
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-overlay a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .breadcrumb-overlay a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        .content {
+            background: white;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Title Section */
+        .title-section {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .last-updated {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Career Box */
+        .career-box {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .career-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .career-box p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .career-button {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .career-button:hover {
+            background: white;
+            color: #ff6b35;
+        }
+
+        /* Content Sections */
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            color: #333;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .data-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .data-label {
+            font-weight: 700;
+            color: #333;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-value {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .instrument-button {
+            background: white;
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .instrument-button:hover {
+            background: #e74c3c;
+            color: white;
+        }
+
+        /* Populations Section */
+        .populations-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .populations-link {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        /* Key Descriptions */
+        .key-descriptions {
+            background: white;
+            padding: 2rem;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .key-descriptions ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .key-descriptions li {
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .key-descriptions li:before {
+            content: "•";
+            color: #007bff;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Psychometric Data */
+        .psychometric-section {
+            background: white;
+            padding: 2rem;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .reliability-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .reliability-item:last-child {
+            border-bottom: none;
+        }
+
+        .reliability-title {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .reliability-details {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .reliability-value {
+            color: #007bff;
+            font-weight: 600;
+        }
+
+        /* More Instruments Section */
+        .more-instruments {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .more-instruments::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="none" stroke="%23007bff" stroke-width="0.5" cx="50" cy="50" r="40"/></svg>');
+            opacity: 0.1;
+            animation: rotate 60s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .more-instruments h2 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .instruments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .instrument-card {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .instrument-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,123,255,0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        .instrument-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .instrument-card .read-more {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 4rem 0 2rem 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            text-align: center;
+        }
+
+        .footer-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            margin: 2rem 0;
+        }
+
+        .contact-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-button {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-button:hover {
+            background: white;
+            color: #1e3c72;
+        }
+
+        .labs-section {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .labs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .lab-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: white;
+            transition: opacity 0.3s;
+        }
+
+        .lab-item:hover {
+            opacity: 0.8;
+            color: white;
+            text-decoration: none;
+        }
+
+        .lab-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .instruments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .labs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">
+                <span class="logo-text">Shirley Ryan </span>
+                <span class="logo-highlight">Abilitylab</span>
+            </a>
+            <div class="nav-actions">
+                <a href="#" class="nav-button">PATIENT PORTAL</a>
+                <a href="#" class="nav-button">PAY A BILL</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="main-nav-content">
+            <ul class="nav-menu">
+                <li><a href="#">WHY CHOOSE US</a></li>
+                <li><a href="#">CONDITIONS & SERVICES</a></li>
+                <li><a href="#">RESEARCH</a></li>
+                <li><a href="#">CAREERS & EDUCATION</a></li>
+                <li><a href="#">GIVE</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="breadcrumb-overlay">
+            <a href="#">REHABILITATION MEASURES DATABASE</a> > <span>TEST OF INFANT MOTOR PERFORMANCE</span>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <main class="content">
+            <div class="title-section">
+                <h1 class="page-title">Test of Infant Motor Performance</h1>
+                <div class="last-updated">
+                    <strong>LAST UPDATED</strong><br>
+                    MAY 03, 2017
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">PURPOSE</div>
+                <p>The TIMP is a 42 item assessment of postural and selective motor control of functional performance in infants between the ages of 34 weeks (gestational age) and 4 months (post term corrected age).</p>
+                
+                <div class="section-title" style="margin-top: 2rem;">LINK TO INSTRUMENT</div>
+                <a href="#" class="instrument-button">INSTRUMENT DETAILS</a>
+            </div>
+
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="data-label">ACRONYM</div>
+                    <div class="data-value">TIMP</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">AREA OF ASSESSMENT</div>
+                    <div class="data-value">Bodily Functions</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">ASSESSMENT TYPE</div>
+                    <div class="data-value">Performance Measure</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">ADMINISTRATION MODE</div>
+                    <div class="data-value">Paper & Pencil</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">COST</div>
+                    <div class="data-value">No Fee</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">ACTUAL COST</div>
+                    <div class="data-value">$</div>
+                </div>
+            </div>
+
+            <div class="populations-section">
+                <div class="section-title">POPULATIONS</div>
+                <a href="#" class="populations-link">Pediatric and Congenital Conditions</a>
+            </div>
+
+            <div class="key-descriptions">
+                <div class="section-title">KEY DESCRIPTIONS</div>
+                <ul>
+                    <li>Originally launched in 1983, the Test of Infant Motor Performance has underwent several revisions and psychometric analyses</li>
+                    <li>The most recent version (Version 5) includes observed items (1-13) scored yes or no (1 point for yes responses and 0 points for no responses)</li>
+                    <li>Elicited items (14-42) scores range from 0-3, 0-4 or 0-5 and 0-6. Score determined by the infant's performance</li>
+                    <li>Items scored are summed</li>
+                    <li>Infant receives an age standard based on performance. Age standard includes average, low average, below average and far below average.</li>
+                    <li>Maximum possible raw score is 142</li>
+                </ul>
+            </div>
+
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="data-label">NUMBER OF ITEMS</div>
+                    <div class="data-value">42 items are included with 13 observed and 29 elicited.</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">EQUIPMENT REQUIRED</div>
+                    <div class="data-value">
+                        • TIMP test form and manual<br>
+                        • Age calculator<br>
+                        • TIMP score sheets<br>
+                        • Red ball utilized for visual stimulus (items #22, #23 and #24)<br>
+                        • Rattle (utilized for items # 38/39)<br>
+                        • Soft cloth (utilized for items #25/26)
+                    </div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">TIME TO ADMINISTER</div>
+                    <div class="data-value">20-40 minutes</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">REQUIRED TRAINING</div>
+                    <div class="data-value">Training Course</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">INSTRUMENT REVIEWERS</div>
+                <p>Dawn Drumm, PT, University of Indiana</p>
+                <p>Jessica Marone, Northwestern University</p>
+            </div>
+
+            <div class="data-grid">
+                <div class="data-item">
+                    <div class="data-label">BODY STRUCTURE</div>
+                    <div class="data-value">Upper Extremity<br>Lower Extremity</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">ICF DOMAIN</div>
+                    <div class="data-value">Body Function<br>Activity<br>Participation</div>
+                </div>
+                <div class="data-item">
+                    <div class="data-label">MEASUREMENT DOMAIN</div>
+                    <div class="data-value">Activities of Daily Living</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">PROFESSIONAL ASSOCIATION RECOMMENDATION</div>
+                <p>The American Physical Therapy Association Special Interest Group on Neonatology lists the TIMP as an assessment appropriate for the Neonatal Intensive Care Unit.</p>
+            </div>
+
+            <div class="section">
+                <div class="section-title">CONSIDERATIONS</div>
+                <ul>
+                    <li>Can be utilized in variety of settings including clinics and hospitals</li>
+                    <li>The test can be completed within twenty four hours of the first assessment if infant cannot complete entire test or if the test is interrupted</li>
+                </ul>
+            </div>
+
+            <div class="psychometric-section">
+                <div class="section-title">PSYCHOMETRIC PROPERTIES</div>
+                
+                <div class="reliability-item">
+                    <div class="reliability-title">STANDARD ERROR OF MEASUREMENT (SEM)</div>
+                    <div class="reliability-details">Premature infants (Campbell et al., 2006; n=990; gestational age range at testing 34-35 weeks postconceptional age through 16-17 weeks postterm).</div>
+                    <div class="reliability-value">SEM = 9 points</div>
+                </div>
+
+                <div class="reliability-item">
+                    <div class="reliability-title">CUT-OFF SCORES</div>
+                    <div class="reliability-details">Premature infants: (Kolobe et al., 2004; n=61; gestational age at testing 34 weeks postconception through 16 weeks postterm)</div>
+                    <div class="reliability-value">Cutscore of −.5 SD below the mean for corrected age yields the optimal combination of specificity for predicting typical development and sensitivity for predicting delayed development</div>
+                </div>
+
+                <div class="reliability-item">
+                    <div class="reliability-title">NORMATIVE DATA</div>
+                    <ul>
+                        <li>The TIMP has age standards for performance that reflect the U.S. population of high-risk infants</li>
+                        <li>Standards provide a means to compare infants being tested to normative values from national sample that was tested</li>
+                        <li>TIMP test manual (Campbell, 2012) provides this table of norms to compare the raw score to the age standard</li>
+                    </ul>
+                </div>
+
+                <div class="reliability-item">
+                    <div class="reliability-title">TEST/RETEST RELIABILITY</div>
+                    <div class="reliability-details">Premature infants: ( Campbell, 1999; n=106; average gestational age at birth =33 weeks; age at testing 32 weeks post-conceptual age to 16-weeks postterm;)</div>
+                    <div class="reliability-value">Excellent test-retest reliability (r = .89 (Pearson Product Moment Correlation ))</div>
+                </div>
+
+                <div class="reliability-item">
+                    <div class="reliability-title">INTERRATER/INTRARATER RELIABILITY</div>
+                    <div class="reliability-details">Premature and full-term infants: (Snider et al., 2009; n=100, mean gestational age at birth = 28.6 +/- 2.5 weeks)</div>
+                    <div class="reliability-value">Excellent interrater reliability (ICC=.856)</div>
+                </div>
+
+                <div class="reliability-item">
+                    <div class="reliability-title">CRITERION VALIDITY (PREDICTIVE/CONCURRENT)</div>
+                    <div class="reliability-details">Concurrent Validity:<br>Premature and full-term infants: (Campbell & Kolobe, 2000; n=90; ,mean gestational age = 31 weeks)</div>
+                    <div class="reliability-value">Excellent correlation of the raw scores of the TIMP and the AIMS, r=0.64 (p<.0001: Pearson product moment correlation coefficient)</div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="career-box">
+                <h3>Discover Careers at Shirley Ryan AbilityLab</h3>
+                <p>We're hiring! Browse jobs and apply today.</p>
+                <a href="#" class="career-button">LEARN MORE</a>
+            </div>
+        </aside>
+    </div>
+
+    <div class="more-instruments">
+        <div class="section-title">REHABILITATION MEASURES</div>
+        <h2>More Instruments Like This</h2>
+        <p>We have reviewed more than 500 instruments for use with a number of diagnoses including stroke, spinal cord injury and traumatic brain injury among several others.</p>
+        
+        <div class="instruments-grid">
+            <a href="#" class="instrument-card">
+                <div class="section-title">UPDATED</div>
+                <h3>Allen Cognitive Level Screening</h3>
+                <div class="read-more">read more</div>
+            </a>
+            <a href="#" class="instrument-card">
+                <div class="section-title">UPDATED</div>
+                <h3>Structured Clinical Interview</h3>
+                <div class="read-more">read more</div>
+            </a>
+            <a href="#" class="instrument-card">
+                <div class="section-title">UPDATED</div>
+                <h3>Pediatric Evaluation of Disability</h3>
+                <div class="read-more">read more</div>
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h2>Contact Us</h2>
+                <p>Have some questions?<br>We would love to hear from you.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-label">TOLL-FREE U.S.</div>
+                    <div class="contact-number">1-800-354-7342</div>
+                    <div class="contact-label">LOCAL CHICAGO</div>
+                    <div class="contact-number">312-238-1000</div>
+                </div>
+                
+                <a href="#" class="footer-button">CONTACT US</a>
+            </div>
+            
+            <div class="footer-section">
+                <h2>Support Us</h2>
+                <p>Your support goes a long way.<br>Thanks for helping us invest in our patients.</p>
+                <a href="#" class="footer-button">GIVE NOW</a>
+            </div>
+        </div>
+
+        <div class="labs-section">
+            <div class="footer-content">
+                <div>
+                    <div class="section-title">LATEST UPDATES FROM THINK + SPEAK LAB</div>
+                    <div style="margin-top: 1rem;">
+                        <h4 style="color: white; margin-bottom: 0.5rem;">Engineering a Successful Stroke Recovery</h4>
+                        <div style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Article</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html><div class="section-title">EXPERIENCE ABILITY LAB CARE</div>
+                    <div class="labs-grid">
+                        <a href="#" class="lab-item">
+                            <div class="lab-icon">💬</div>
+                            <span>Think + Speak Lab</span>
+                        </a>
+                        <a href="#" class="lab-item">
+                            <div class="lab-icon">🦵</div>
+                            <span>Legs + Walking Lab</span>
+                        </a>
+                        <a href="#" class="lab-item">
+                            <div class="lab-icon">✋</div>
+                            <span>Arms + Hands Lab</span>
+                        </a>
+                        <a href="#" class="lab-item">
+                            <div class="lab-icon">💪</div>
+                            <span>Strength + Endurance Lab</span>
+                        </a>
+                        <a href="#" class="lab-item">
+                            <div class="lab-icon">❤️</div>
+                            <span>Pediatric Lab</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
