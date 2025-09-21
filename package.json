@@ -2,7 +2,6 @@
   "name": "sralab-timp-recreation",
   "version": "1.0.0",
   "description": "Recreation of the SRA Lab Test of Infant Motor Performance webpage",
-  "main": "index.html",
   "keywords": [
     "rehabilitation",
     "infant-motor-performance",
@@ -11,10 +10,5 @@
     "healthcare"
   ],
   "author": "Your Name",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Amakanza/sralab.git"
-  },
-  "homepage": "https://sralab.vercel.app"
+  "license": "MIT"
 }
